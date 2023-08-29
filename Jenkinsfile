@@ -1,8 +1,4 @@
 node {
-    properties([
-        pipelineTriggers([pollSCM('*/2 * * * *')])
-    ])
-
     def dockerImage = 'node:16-buster-slim'
 
     stage('Checkout') {
