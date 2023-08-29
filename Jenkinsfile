@@ -10,13 +10,13 @@ node {
     }
 
     stage('Build') {
-        docker.image(dockerImage).inside("-p 3000:3000") {
+        docker.image(dockerImage).inside("-p 3010:3010") {
             sh 'npm install'
         }
     }
 
     stage('Test') {
-        docker.image(dockerImage).inside("-p 3000:3000") {
+        docker.image(dockerImage).inside("-p 3010:3010") {
             sh './jenkins/scripts/test.sh'
         }
     }
