@@ -6,13 +6,13 @@ node {
     }
 
     stage('Build') {
-        docker.image(dockerImage).inside("-p 3010:3010") {
+        docker.image(dockerImage).inside("-p 3000:3000") {
             sh 'npm install'
         }
     }
 
     stage('Test') {
-        docker.image(dockerImage).inside("-p 3010:3010") {
+        docker.image(dockerImage).inside("-p 3000:3000") {
             sh './jenkins/scripts/test.sh'
         }
     }
@@ -22,7 +22,7 @@ node {
     }
 
     stage('Deploy') {
-        docker.image(dockerImage).inside("-p 3010:3010") {
+        docker.image(dockerImage).inside("-p 3000:3000") {
             sh './jenkins/scripts/deliver.sh'
             input message: 'Sudah selesai menggunakan React App? (Klik "Proceed" untuk mengakhiri)'
             sh 'sleep 1m'
