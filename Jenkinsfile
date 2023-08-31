@@ -18,13 +18,12 @@ node {
     }
 
     stage('Manual Approval') {
-        input message: 'Apakah Anda ingin melanjutkan ke tahap Deploy? (Klik "Proceed" untuk melanjutkan)'
+        input message: 'Lanjutkan ke tahap Deploy? (Klik "Proceed" untuk melanjutkan)'
     }
 
     stage('Deploy') {
         docker.image(dockerImage).inside("-p 3000:3000") {
-            sh './jenkins/scripts/deliver.sh'
-            input message: 'Sudah selesai menggunakan React App? (Klik "Proceed" untuk mengakhiri)'
+            sh './jenkins/scripts/deliver.sh'            
             sh 'sleep 1m'
             sh './jenkins/scripts/kill.sh'
         }
